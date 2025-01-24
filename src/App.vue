@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     filteredPersons() {
-      return persons.filter((p) => {
+      return persons.filter((person) => {
         for (let i = 0; i < this.criteria.length; i++) {
           const criterion = this.criteria[i];
 
@@ -57,9 +57,7 @@ export default {
             continue;
           }
 
-          console.log("comparaison pour", p, criterion);
-
-          if (p[criterion.id] != criterion.value) {
+          if (person[criterion.id] != criterion.value) {
             return false;
           }
         }
@@ -70,8 +68,8 @@ export default {
   },
   methods: {
     resetCriteria() {
-      this.criteria.forEach(c => {
-        c.value = null;
+      this.criteria.forEach(criterion => {
+        criterion.value = null;
       });
     }
   },
