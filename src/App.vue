@@ -2,6 +2,11 @@
   <div class="board">
     <div class="criteria">
       <h2>Critères</h2>
+      <div class="criteriaList">
+        <div v-for="criterion in criteria" :key="criterion">
+          {{  criterion }}
+        </div>
+      </div>
     </div>
     <div class="grid">
       <div v-for="person in persons" :key="person.id">
@@ -19,6 +24,11 @@ export default {
   data() {
     return {
       persons: persons
+    }
+  },
+  computed: {
+    criteria() {
+      return Object.keys(persons[0]).filter(key => key !== 'id');
     }
   },
   components: {
@@ -47,5 +57,9 @@ export default {
   border: 1px solid #c1c1c1;
   border-radius: 5px;
   padding: 5px;
+}
+.criteriaList {
+  display:flex;
+  flex-direction: column;
 }
 </style>
