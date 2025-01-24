@@ -1,15 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <ul>
+    <li v-for="person in persons" :key="person.id">
+      {{ person.id }}
+    </li>
+  </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import * as persons from './assets/persons.json';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      persons: persons
+    }
+  },
   components: {
-    HelloWorld
   }
 }
 </script>
