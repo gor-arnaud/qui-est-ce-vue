@@ -24,18 +24,20 @@
       </div>
     </div>
     <div class="grid">
-      <div v-for="person in filteredPersons" :key="person.id">
-        <img :src="require(`./assets/${person.id}.jpg`)" />
-      </div>
+      <PersonCard v-for="person in filteredPersons" :key="person.id" :person="person"></PersonCard>
     </div>
   </div>
 </template>
 
 <script>
 import persons from "./assets/persons.json";
+import PersonCard from "./components/personCard.vue";
 
 export default {
   name: "App",
+  components: {
+    PersonCard
+  },
   data() {
     return {
       persons: persons,
@@ -100,13 +102,13 @@ export default {
   flex-direction: column;
 }
 .grid {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   border: 1px solid #c1c1c1;
   border-radius: 5px;
   padding: 5px;
+  gap: 10px;
 }
 .criteriaList {
   display: flex;
