@@ -1,4 +1,5 @@
 <template>
+  <h1>Qui est-ce ? (un jeu MB®)</h1>
   <div class="board">
     <div class="criteria">
       <h2>Critères</h2>
