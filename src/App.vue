@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="grid">
-      <div v-for="person in persons" :key="person.id">
+      <div v-for="person in filteredPersons" :key="person.id">
       <img :src="require(`./assets/${person.id}.jpg`)">
     </div>
     </div>
@@ -23,12 +23,26 @@ export default {
   name: 'App',
   data() {
     return {
-      persons: persons
+      persons: persons,
+      selectedCriteria: []
     }
   },
   computed: {
     criteria() {
       return Object.keys(persons[0]).filter(key => key !== 'id');
+    },
+    filteredPersons() {
+      return persons.filter( p => {
+        for (let i = 0; i < this.selectedCriteria.length; i ++) {
+          const criterion = this.selectedCriteria[i];
+
+          if (p[criterion.id] != criterion.value) {
+            return false;
+          }
+        }
+
+        return true;
+      });
     }
   },
   components: {
