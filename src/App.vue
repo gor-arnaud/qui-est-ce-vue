@@ -1,13 +1,13 @@
 <template>
   <ul>
     <li v-for="person in persons" :key="person.id">
-      {{ person.id }}
+      <img :src="require(`./assets/${person.id}.jpg`)">
     </li>
   </ul>
 </template>
 
 <script>
-import * as persons from './assets/persons.json';
+import persons from './assets/persons.json';
 
 export default {
   name: 'App',
