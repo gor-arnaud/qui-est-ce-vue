@@ -2,6 +2,8 @@
   <div class="board">
     <div class="criteria">
       <h2>Critères</h2>
+      <h3 v-if="filteredPersons.length === 1">C'est&nbsp;{{ filteredPersons[0].id }}!!!</h3>
+      <h3 v-else>{{ filteredPersons.length }}&nbsp;suspect(s)</h3>
       <div class="criteriaList">
         <div v-for="criterion in criteria" :key="criterion">
           <select v-model="criterion.value">
@@ -14,6 +16,9 @@
             </option>
           </select>
           {{ criterion.id }}
+        </div>
+        <div>
+          <button @click="resetCriteria">Réinitialiser</button>
         </div>
       </div>
     </div>
@@ -62,7 +67,13 @@ export default {
       });
     },
   },
-  components: {},
+  methods: {
+    resetCriteria() {
+      this.criteria.forEach(c => {
+        c.value = null;
+      });
+    }
+  },
   mounted() {
     this.criteria = Object.keys(persons[0])
       .filter((key) => key !== "id")
